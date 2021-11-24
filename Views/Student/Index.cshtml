@@ -1,0 +1,60 @@
+@model NetCoreDemo.Models.StudentGenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Student" asp-action="Index" method="get">
+    <p>
+
+        <select asp-for="StudentAddress" asp-items="Model.Address">
+            <option value="">All</option>
+        </select>
+
+        Họ Tên: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].StudentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentID">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentID">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentID">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
