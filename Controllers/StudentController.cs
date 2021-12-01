@@ -12,6 +12,7 @@ namespace NetCoreDemo.Controllers
 {
     public class StudentController : Controller
     {
+        private readonly Process strPro = new Process();
         private readonly NetCoreDbContext _context;
 
         public StudentController(NetCoreDbContext context)
@@ -70,6 +71,13 @@ namespace NetCoreDemo.Controllers
         // GET: Student/Create
         public IActionResult Create()
         {
+                var model = _context.Student.ToList();  
+            if (model.Count()==0) ViewBag.StudentID = "ST001";
+            else {
+                var newKey = model.OrderByDescending(m => m.StudentID).FirstOrDefault().StudentID;
+                ViewBag.StudentID = strPro.GenerateKey(newKey);
+           } 
+
             return View();
         }
 
@@ -93,6 +101,7 @@ namespace NetCoreDemo.Controllers
             }
           
             return View(student);
+        
         }
 
         // GET: Student/Edit/5
