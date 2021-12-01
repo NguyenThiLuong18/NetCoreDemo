@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MaHoaDon" class="control-label"></label>
-                <input asp-for="MaHoaDon" class="form-control" />
+                <input asp-for="MaHoaDon" class="form-control" value = "@ViewBag.MaHoaDon" readonly/>
                 <span asp-validation-for="MaHoaDon" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -12,6 +12,7 @@ namespace NetCoreDemo.Controllers
 {
     public class HoaDonController : Controller
     {
+        private readonly Process strPro = new Process();
         private readonly NetCoreDbContext _context;
 
         public HoaDonController(NetCoreDbContext context)
@@ -46,6 +47,12 @@ namespace NetCoreDemo.Controllers
         // GET: HoaDon/Create
         public IActionResult Create()
         {
+             var model = _context.HoaDon.ToList();  
+            if (model.Count()==0) ViewBag.MaHoaDon = "HD001";
+            else {
+                var newKey = model.OrderByDescending(m => m.MaHoaDon).FirstOrDefault().MaHoaDon;
+                ViewBag.MaHoaDon = strPro.GenerateKey(newKey);
+           } 
             return View();
         }
 
