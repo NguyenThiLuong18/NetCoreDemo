@@ -1,0 +1,22 @@
+@model NetCoreDemo.Models.MovieGenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ <form asp-action="UploadFile", enctype="multipart/form-data">
+  <div>
+                <label> Upload file excel!</label>
+                <br />
+                <input name= "file" type="file" class="from-control">
+                <br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+ </form>
+<p>
+    <a asp-action="Create">+Thêm mới movie</a>
+</p>
